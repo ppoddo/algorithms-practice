@@ -35,10 +35,10 @@ python3 --version
 4. 플랫폼에 맞는 스크립트로 로컬 실행/검증합니다.
 5. 출력 검증이 끝나면 사이트에 제출합니다. (BaekjoonHub 설치/연결 확인)
 6. 정답이면 BaekjoonHub가 `fork-algorithms-study`에 원본 폴더를 생성합니다.
-7. 로컬 `fork-algorithms-study`를 pull 합니다.
+7. 로컬 `fork-algorithms-study`에서 `origin/main`을 최신화하고, `upstream/main` 기준으로 PR 브랜치를 새로 만듭니다.
 8. `sync_to_fork.sh`로 PR용 표준 경로(`archive/<platform>/<problem_id>/<user_id>`)로 복사합니다.
-9. 스크립트 출력 안내대로 `git add/commit/push`를 진행합니다.
-10. GitHub에서 `DokiDokiStudy/Algorithms-study`로 PR을 생성합니다.
+9. `git add archive/...`만 수행해 `백준/`, `프로그래머스/` 원본 폴더는 PR에 포함하지 않습니다.
+10. 커밋/푸시 후 GitHub에서 `DokiDokiStudy/Algorithms-study`로 PR을 생성합니다.
 
 ## Command Examples
 
@@ -49,12 +49,28 @@ python3 --version
 # Programmers 실행
 ./scripts/run_programmers.sh 12906
 
-# 포크 최신화
-cd fork-algorithms-study && git pull origin main && cd ..
+# 포크 저장소 이동
+cd fork-algorithms-study
+
+# 최신화
+git fetch origin
+git fetch upstream
+git checkout main
+git pull origin main
+
+# PR 브랜치 생성(중요: upstream/main 기준)
+git checkout -b pr/batch-2026-02 upstream/main
 
 # PR용 구조 변환
+cd ..
 ./scripts/sync_to_fork.sh boj 9012 ppoddo
 ./scripts/sync_to_fork.sh programmers 12906 ppoddo
+
+# PR 브랜치에서 archive만 커밋
+cd fork-algorithms-study
+git add archive/boj/9012/ppoddo archive/programmers/12906/ppoddo
+git commit -m "[BOJ-9012][PGS-12906] ppoddo 풀이 추가"
+git push -u origin pr/batch-2026-02
 ```
 
 ## Run (BOJ)
