@@ -25,8 +25,6 @@ from collections import deque
 # N+3번째 줄부터 M개의 줄에 걸쳐서, Px, tx, cx가 공백으로 구분되어 주어집니다. 입력된 순서대로 각각 N+1, ..., N+M번 고객입니다.
 # 이는 고객 id가 Px인 고객은 일을 처리하는 데 필요한 시간이 tx초이고, 영업 시작 시간으로부터 cx초가 지났을 때 은행에 들어왔다는 것을 의미합니다.
 
-# 왜 queue랑 deque 중에 deque를 쓰는가 물어보면 뭐라 대답해야함
-
 def main() -> None:
     input = sys.stdin.readline
     # N: 최초 대기 줄 손님, T: 직원이 한 번에 처리할 수 있는 최대 업무 시간, W : 직원이 어떤 고객의 업무를 처리하는지 알려주는 시간 범위
