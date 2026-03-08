@@ -1,0 +1,9 @@
+5 3
+apple
+banana
+cherry
+date
+elderberry
+apple
+fig
+cherry
